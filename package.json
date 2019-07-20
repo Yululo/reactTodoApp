@@ -1,41 +1,41 @@
 {
-	"name": "reacttodoapp",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"webpack": "webpack",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "webpack-dev-server --content-base build/"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Yululo/reactTodoApp.git"
-	},
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/Yululo/reactTodoApp/issues"
-	},
-	"homepage": "https://github.com/Yululo/reactTodoApp#readme",
-	"dependencies": {
-		"babel-eslint": "^10.0.2",
-		"react": "^16.8.6",
-		"react-dom": "^16.8.6"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.5.5",
-		"@babel/preset-env": "^7.5.5",
-		"@babel/preset-react": "^7.0.0",
-		"babel-loader": "^8.0.6",
-		"eslint": "^5.16.0",
-		"eslint-config-airbnb": "^17.1.1",
-		"eslint-config-airbnb-base": "^13.2.0",
-		"eslint-plugin-import": "^2.18.1",
-		"eslint-plugin-jsx-a11y": "^6.2.3",
-		"eslint-plugin-react": "^7.14.2",
-		"webpack": "^4.36.1",
-		"webpack-cli": "^3.3.6",
-		"webpack-dev-server": "^3.7.2"
-	}
+  "name": "reacttodoapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --content-base build/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yululo/reactTodoApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yululo/reactTodoApp/issues"
+  },
+  "homepage": "https://github.com/Yululo/reactTodoApp#readme",
+  "dependencies": {
+    "babel-eslint": "^10.0.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.2",
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
+  }
 }
