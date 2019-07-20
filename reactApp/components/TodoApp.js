@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import InputLine from './InputLine';
 import TodoList from './TodoList';
 
-const dummyData = [
+let dummyData = [
   {taskText: 'to eat', completed: false},
   {taskText: 'to sleep', completed: false},
   {taskText: 'to code', completed: true}
@@ -13,6 +13,13 @@ class TodoApp extends Component {
   constructor(props) {
     super(props);
     this.state = {todos: []};
+  }
+
+  removeTodo(index) {
+    // console.log(dummyData, index);
+    dummyData.splice(index, 1);
+    // console.log(dummyData);
+    this.setState({todos: dummyData});
   }
 
   // it is executed when all elements got rendered
@@ -26,11 +33,21 @@ class TodoApp extends Component {
     this.setState({todos: dummyData});
   }
 
+  setComplete(index) {
+    console.log('index: ' + index);
+    dummyData[index].completed = !dummyData[index].completed;
+    this.setState({todos: dummyData});
+  }
+
   render() {
     return (
       <div>
         <InputLine submit={task => this.addTodo(task)} />
-        <TodoList todos={this.state.todos} />
+        <TodoList
+          todos={this.state.todos}
+          todoXClick={this.removeTodo.bind(this)}
+          todoToggle={this.setComplete.bind(this)}
+        />
       </div>
     );
   }
