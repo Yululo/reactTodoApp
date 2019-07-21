@@ -5,10 +5,9 @@ const TodoItem = require('../models/TodoItem');
 // router.get('/add', (req, res) => {
 //   res.send('Hello');
 // });
-router.get('/add', (req, res) => {
+router.post('/add', (req, res) => {
   const testTodo = new TodoItem({
-    task: 'test task',
-    completed: 'false'
+    task: req.body.task
   });
 
   testTodo

@@ -13,8 +13,8 @@ class TodoList extends Component {
       <ul>
         {this.props.todos.map((data, index) => (
           <Todo
-            key={data.taskText}
-            data={data.taskText}
+            key={index}
+            data={data.task}
             completed={data.completed}
             xClick={() => this.props.todoXClick(index)}
             xComplete={() => this.props.todoToggle(index)}
