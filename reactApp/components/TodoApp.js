@@ -9,11 +9,11 @@ import axios from 'axios';
 // we used it and change all of them
 const dbUrl = 'http://localhost:3000/db';
 
-let dummyData = [
-  {task: 'to eat', completed: false},
-  {task: 'to sleep', completed: false},
-  {task: 'to code', completed: true}
-];
+// let dummyData = [
+//   {task: 'to eat', completed: false},
+//   {task: 'to sleep', completed: false},
+//   {task: 'to code', completed: true}
+// ];
 
 class TodoApp extends Component {
   constructor(props) {
@@ -21,18 +21,33 @@ class TodoApp extends Component {
     this.state = {todos: []};
   }
 
-  removeTodo(index) {
+  removeTodo(id) {
     // console.log(dummyData, index);
-    let newData = dummyData.slice();
-    newData.splice(index, 1);
+    // let newData = this.state.todos.slice();
+    // newData.splice(index, 1);
     // console.log(dummyData);
-    this.setState({todos: newData});
+    // this.setState({todos: newData});
+
+    // receive data that only with specified id removed
+    axios.post(dbUrl + '/remove', {_id: id}).then(response => {
+      // this.setState({todos: response.data});
+      let newTodos = this.state.todos.slice();
+      for (let i in newTodos) {
+        if (newTodos[i]._id === id) {
+          newTodos.splice(i, 1);
+        }
+      }
+      this.setState({todos: newTodos});
+    });
   }
 
   // it is executed when all elements got rendered
   componentDidMount() {
-    this.setState({todos: dummyData});
+    // this.setState({todos: this.todos});
     // const resp = await axios.get();
+    axios.get(dbUrl + '/all').then(response => {
+      this.setState({todos: response.data});
+    });
   }
 
   // it takes in task and update the dummy data
@@ -40,6 +55,7 @@ class TodoApp extends Component {
     // dummyData.push({taskText: task, completed: false});
     // this.setState({todos: dummyData});
 
+    // past data to that route, so that it can be accessed as req.body.task
     axios
       .post(dbUrl + '/add', {task: task, completed: false})
       .then(
@@ -55,10 +71,24 @@ class TodoApp extends Component {
     // this.setState({todos: })
   }
 
-  setComplete(index) {
+  toggleTodo(id) {
     // console.log('index: ' + index);
-    dummyData[index].completed = !dummyData[index].completed;
-    this.setState({todos: dummyData});
+    // this.state.todos[index].completed = !this.state.todos[index].completed;
+    // this.setState({todos: this.todos});
+
+    // give the route a id of the todos, so that it can toggle the
+    // completed option in that route by res.body._id
+    // expects a changed todo object to be pasted in
+    axios.post(dbUrl + '/toggle', {_id: id}).then(response => {
+      let newTodos = this.state.todos.slice();
+      // {this.setState({todos: })}
+      for (let i in newTodos) {
+        if (newTodos[i]._id === id) {
+          newTodos[i] = response.data;
+        }
+      }
+      this.setState({todos: newTodos});
+    });
   }
 
   render() {
@@ -68,7 +98,7 @@ class TodoApp extends Component {
         <TodoList
           todos={this.state.todos}
           todoXClick={this.removeTodo.bind(this)}
-          todoToggle={index => this.setComplete(index)}
+          todoToggle={index => this.toggleTodo(index)}
         />
       </div>
     );

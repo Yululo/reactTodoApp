@@ -11,13 +11,14 @@ class TodoList extends Component {
   render() {
     return (
       <ul>
-        {this.props.todos.map((data, index) => (
+        {this.props.todos.map(data => (
           <Todo
-            key={index}
+            // key should be a unique number for the index of the array
+            key={data._id}
             data={data.task}
             completed={data.completed}
-            xClick={() => this.props.todoXClick(index)}
-            xComplete={() => this.props.todoToggle(index)}
+            xClick={() => this.props.todoXClick(data._id)}
+            xComplete={() => this.props.todoToggle(data._id)}
           />
         ))}
       </ul>
